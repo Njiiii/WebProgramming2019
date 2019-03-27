@@ -31,14 +31,14 @@ let persons = [
     ]
 
     app.get('/', (req, res) => {
-        res.send('<p>Tietokanta löytyy localhost:3001/persons</p> <a href="localhost:3001/persons">persons database</a>')
+        res.send('<h1>Hello World</h1>')
     })
   
-    app.get('/persons', (reg, res) => {
+    app.get('/api/persons', (reg, res) => {
         res.json(persons)
     })
 
-    app.get('/persons/:id', (reg, res) => {
+    app.get('/api/persons/:id', (reg, res) => {
         const id = Number(reg.params.id)
         const person = persons.find(person => person.id === id)
         
@@ -49,14 +49,14 @@ let persons = [
         }
     })
 
-    app.delete('/persons/:id', (req, res) => {
+    app.delete('/api/persons/:id', (req, res) => {
         const id = Number(req.params.id)
         persons = persons.filter(person => person.id !== id)
 
         res.status(204).end()
     })
 
-    app.post('/persons', (req, res) => {
+    app.post('/api/persons', (req, res) => {
         const body = req.body
         
         if(body.name === undefined) {
